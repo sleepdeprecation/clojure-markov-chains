@@ -1,0 +1,143 @@
+Let's at least start to consider killing the plain old file system
+Electronic files have been an integral part of how we use computers for a very long time. I think it is time to rethink how software developers use files and the file system. A single file always has a single state on the disk. When the user chooses to ‘save’ the file, the old state is gone forever. There is no way to go back and look at any old state of a file (without the help from some tools). Electronic files made sense in the dawn of computing. Disk space was expensive and we could not afford to store every single change on our small, expensive disk drives.
+
+Version control systems are an acknowledgment that the ‘plain old file system’ does not work for programmers. The first ones were built decades ago when disk space was still expensive and as a result they are full of compromises. They are optimized to be disk efficient. What is very surprising to me is that modern version control systems are built with the same constraints. Git and mercurial were created within the last ten years but they are designed with 1980's disks in mind.
+
+My big complaint about the file system is that, even though disk space has gotten incredibly cheap, we don't store more information about the changes to our files. Since the cost per bit of disk space is ridiculously cheap (and getting cheaper) we should record all the changes to a set of files and make that data available to be manipulated.
+
+Complex electronic creative artifacts like code, novels, and electronic art evolve over time. Using the file system alone makes it impossible to capture that evolution. Using version control tools help capture some of the history but they require that the user actively think about using them. Good luck getting an author or artist to use git, the CLI is terrible and only a software developer would put up with it. In addition, animating multiple consecutive changes in a version control system to show long term evolution is difficult. It is going to be a challenge for future scholars to see how modern authors work if the authors are not vigilant about storing intermediate versions of it. Compare this with hand written manuscripts from one hundred years ago with edits in line.
+
+You might be thinking, “it is good that some of that file history is lost forever, it represents work that turned out to be not very good” but I argue that there are some lessons that can be learned from those experiences. It is very difficult to see how others do creative work when it is done on a computer. Since we can't see how people work, we can't learn from their experiences. We need to open up those experiences so others can learn.
+
+If we stored all of the changes all of the time and we stored some additional data like who made each change, when was it made, and where the author was when they made the change, we would start to open up some learning opportunities. Google docs and other cloud based tools are recording more and more of this kind of historical information. They are not worried about disk space.
+
+The project I am working on, Storyteller, seamlessly records all file based interactions for software developers by extending their IDEs. My hypothesis is that the most valuable metadata that can be stored is an author supplied commentary on a set of changes. This commentary will follow the animated changes and offer an explanation, a hint, or a lesson learned from the author. These can be shared between developers to open up the programming process so that we can learn from each other.
+
+The real issue is that there are some files that are meant to be consumed left to right, top to bottom but are rarely created that way. The compiler reads source code files in this way but we all know that code is never written that way. The process of creating those artifacts is often lost because of our use of electronic files and supporting tools. I can envision a new abstraction over the file system that does this for all files like this. Perhaps Storyteller will be the answer for software developers, or maybe it won't. Regardless, I believe we need to do something to move the electronic file into the 21st century.
+
+Forget pair programming, I like pair debugging
+I am generally a fan of pair programming. Having said that, though, I rarely feel at a loss for good ideas on how to solve problems when I am working on small, incremental additions by myself. Making small, incremental changes is what most of us do most of the time. Often, I write code without any input from team members at all and do pretty well. Other times I will have a short discussion with other developers to discuss ideas and weigh options. For me, this seems to be enough to generate good code. Most of the work that I do without the input from a pair programmer seems to turn out well. So, I tend not to pair that often.
+
+The only time I ever really feel any kind of despair while programming is when I am dealing with a tricky bug. When I am working on a change that breaks something unexpectedly I often feel a sense of panic. Something I have done has had an effect on another part of the system. Many times, I will not know a lot about the broken part of the system. This is when I feel a strong need to sit down with someone else who knows about it and talk through what I did and how it might have affected it. In fact, I often wish I had more than one additional person to talk to.
+
+Of course, one might argue that if I had pair programmed with the 'right' person in the first place I wouldn't have made the error or felt the panic. However, it is difficult to anticipate what is going to go wrong and, therefore, who to pair with. So, at least for me, I don't feel like pair programming all of the time is the best use of my partner's time. I feel like having short discussions with my team members and pair debugging on demand is the most effective for me.
+
+I am all for pairing when I don't have a good, strong idea on how to solve a problem or either I lack some experience or my partner does. I like to pair when I am learning a new system or subsystem. I also choose to pair in the very early stages of a system's development when everything is brand new and just being built.
+
+Mostly, though, I like how knowledge spreads from more informed developers to less experienced ones. I don't insist that every single line of code be written in a pair for my projects. I tend to use pair programming as a learning tool more than a creativity tool. I feel it is most valuable when I know I am lacking some knowledge, that is, after I have broken something and can't figure out how to fix it.
+
+Remote workers, how do you learn from each other?
+There is a lot of talk about remote workers since the publication of the book, "Remote: Office Not Required" by DHH and Jason Fried. Although I have not read the book yet (I am a fan of the authors' other book, "Rework") I wonder how remote workers teach and learn from each other?
+
+In the past I have said that knowledge work is a lonely activity. The craft of writing software seems to be one of the few where it is hard to see how more knowledgable craftsmen do their work. It is easy for master cabinet makers to do their work and be watched by apprentices. With knowledge workers, however, it is usually one person in front of one computer. Sometimes we pair program, but in general, apprentice software developers cannot sit and watch a master artfully craft some code (there is nothing preventing them from doing this, I suppose, but we tend to put up personal barriers when working on a computer).
+
+Sadly, one can be sitting three feet away from a great programmer and never really learn anything from them if there is not a culture of teaching and learning. Great developers in a mature organization will make an effort to spread their knowledge to less experienced developers. Having been in organizations like this I know that most of the teaching takes place face to face. Teaching is always more effective when done face to face. It seems to me that working remotely adds another barrier to being able to learn from the developers around you.
+
+If I was a fresh CS graduate hired today, I would insist on being close to seasoned developers. After all, the completion of a computer science degree really just marks the beginning of a lifetime of learning. I cannot think of a worse thing to do to a new professional developer than to isolate them from the more knowledgable.
+
+One might argue that only great developers who are motivated and independent learners should be working remotely. It is not likely that they would learn much from their less knowledgable peers in the office anyway. I imagine that the relatively small 37 Signals only hires the best developers who are motivated learners, so I am not surprised that their environment is ideal for working remotely. Larger companies that can't attract an entire crew of these super learners would most likely want to have the ones they can attract as close to the less experienced developers as possible. They are the ones who will teach the others.
+
+So, how does knowledge spread in a remote office? Can an inexperienced developer with a lot of potential be hired in one of these environment and expect to learn from others?
+
+My best computer science students do these things
+Recently, I went through a list of every single student I have had over the last 10+ years of teaching computer science to undergraduate students. It brought back a lot of memories (and made me feel very old). I decided to make a list of the things that I have noticed that my best students do.
+
+1. They are hard workers
+Ok, this is a really obvious one, lazy people don't accomplish much. In this case, however, I mean that computer science students have to be willing to 'try, then fail, then fix' in order to learn. There are some disciplines like mathematics, philosophy, and economics that a really bright student can learn a great deal by listening to lectures, reading textbooks, attending class, and thinking. They learn by applying their impressive brainpower to a complex topic and somehow all the abstract pieces mysteriously fit together. I am jealous of these people.
+
+Computer programming, on the other hand, is a topic that one can only learn by building. No one has ever learned to be a great programmer by simply listening to great lectures, reading amazing books, or watching Linus or Zuck program. Similarly, no one has ever become a great artist simply by observing Picasso paint or become a great writer simply by reading and rereading Mark Twain (observing skilled craftsmen can certainly help, but it can't be the only learning technique in one's toolbox). Art and writing are also skills that one learns by building. When the students are the ones building all the pieces (code) they never just magically fit together.
+
+Occasionally, I will get an incredibly bright student who has never had to learn by building. A humble student will recognize that there are some topics in which their passive approach will not be sufficient and they will adapt. Others don't adapt and they tend to switch majors. One has to be willing to get their hands dirty and spend six hours looking for an elusive bug or be willing to throw out three weeks of work and start over to make a program better.
+
+2. They are creative
+I am truly impressed by some of the creative approaches my students take when solving problems. Even though I have been programming longer than some of my students have been alive I don't intrinsically know the best solution to every problem. Often I will be talking with a student about a problem and I will give them some advice- I will tell them how I'd solve the problem. If there is something they don't like about the suggestion (usually when it sounds like a lot of work) it tends to create a spark in them. This spark might lead to another way of accomplishing the same end result. Their creativity is inspiring to me.
+
+So what do you do if you are not a creative person? What if you were never good at art or don't have great personal style? It turns out that those are not the only ways express your creativity. A creative problem solver uses all of their past experiences and intuition to propose radically different solutions to problems. Often they will 'see' the problem in a different way that allows them to propose a more elegant, simple, and efficient solution. If you don't feel like you are a creative problem solver perhaps it is because you aren't listening to other people's ideas and engaging them with yours. Talking to other developers is often the best way to improve your creativity skills and become a better programmer. 
+
+3. They are curious
+My best students are very curious about how and why things work. If I tell a student that one algorithm is better than another without explaining why, the good ones will demand that I tell them why. Sometimes I am unable to convince them and they seek proof. I have had many students write programs to try to prove or disprove something that I have claimed. This is very satisfying for me as a teacher because I know that I can trust this person to always seek the truth.
+
+My best students are also the best debuggers of code. When some of their code doesn't work they need to know why. I will see students debug their programs, sometimes for hours, trying different inputs and going down different paths of the call stack until the find out the 'why'. They then reflect on what they have discovered and burn the reason into their brains so that the next time they won't make the same mistake again.
+
+4. They believe in magic
+Ok, its probably not a good idea to believe in magic, but it is good to believe that you are a wizard. From my earliest days programming, whenever I write and then run a program it has felt like magic. Even after I learned that there is no magic happening inside the computer, I still feel like I can conjure up miracles with the spells I write in my editor.
+
+There is something so unnatural about telling a machine to do billions upon billions of operations and have it do them so quickly and without complaint. If this feeling ever goes away I will probably stop being a programmer. I especially like to watch my students make the realization that they too can conjure up miracles. One of the benefits of being a teacher is that students (at least partially) attribute this power to me- that's awesome!
+
+5. They are patient with themselves 
+It's hard not to feel like an idiot after spending several hours debugging code only to realize the problem was a simple, easily fixable error. It's hard for some, but not for my best students. For them, finding and fixing any bug is an exciting activity. Not only do they learn something new (or what not to do in the future) but the process of moving through their living code is enlightening. Moving through code validates that everything is working as it should and provides confidence in the program they are building.
+
+Writing complex programs is a difficult task. One should expect to encounter trouble along the way. The best programmers come to expect difficulty and do not get down when it happens over and over again.
+
+6. They are patient with others
+I always try to convince my best students to become tutors in the department. Being a tutor means learning how other people perceive programming problems, suggesting ways of looking at the problems, suggesting possible solutions, listening to the feedback about those suggestions, and guiding students towards a critical realization that they can, in fact, solve the problem that was so elusive before. In other words, being a tutor is a lot like being a professor.
+
+I was a tutor in college and I found it fascinating. Without that experience I definitely would not have ended up being a professor. In fact, being a tutor has shaped my teaching style. I have often felt that what I do best as a teacher is talk to students about the problems and make them realize that they can solve them. I try and provide confidence.
+
+
+Here are some things that unsuccessful computer science students do:
+- underestimate how much time is required to 'learn by building' and don't put in the time
+- don't talk to other people about what they are doing
+- are afraid to ask questions
+- insist on figuring things out by themselves
+- are unfriendly to their peers
+- they don't feel like they need to know why something works or does not work
+- don't compile and run their code often enough, they don't get the feedback necessary to eliminate problems as soon as possible and they don't get to feel like a wizard
+- get frustrated at themselves for making simple mistakes- it's ok, we all do it!
+
+No one learns to program alone
+I can't think of a single field where it is more important to have an active support system while learning than computer programming (by 'active' I mean actively involved with other human beings). Here's why you need to talk to other human beings while learning to code:
+
+When our tools get confused about what we ask them to do, they are not good at explaining their misunderstanding of the problem.
+
+Here are some things that I hear from my students in introductory programming courses:
+"I have no idea what this error message means."
+"The program compiled but I got this error message while the program was running and it makes no sense to me."
+"The compiler told me there were 23 errors but after I fixed the first one everything was fine."
+
+Imagine two people who know very little of each other's language but are discussing a mathematical problem. If both people understand the mathematics then the language barrier is not significant. If one person doesn't understand the problem and needs clarification from the other then the language barrier is significant. As a programmer, if you know your stuff then the language barrier is not significant. But if you are just learning to program this can be very frustrating. It's like the programmer and compiler barely speak the same language.
+
+Having a knowledgeable human being to translate between the compiler and the beginner programmer will make learning so much easier. I often joke with my students that I will follow them around and answer all of their programming questions for a very large fee (I have had no takers yet). When I run into a student who is very frustrated I will often invite them to work in my office so that when they have a question they can get an answer from me right away. I dedicate a lot of in-class time for exactly this purpose and I think it is much more beneficial than simply listening to me lecture.
+
+Working on a computer is a solitary activity and it is hard to see what other programmers do in similar situations.
+
+I have written before about how knowledge work is a lonely activity. Even though my class is filled with great students who are willing to help each other learn, it is so hard for them to learn programming from one another. This is because it is hard for students to physically see each other work. There is a culture among knowledge workers (and students) of, "I work on my computer, you work on yours." I would like to see tools and techniques to open up the programming process for all to see.
+
+In a sense, I feel that only professors like me get to break down the barrier between beginning programmers and their computers. We teachers are expected to watch others do their work. This is one of the most satisfying things about being a teacher. I'm amazed by some of the solutions my students come up with. One of the things I love about teaching is that I get to learn from my students and see their interesting ideas for solving problems.  If you are asked to solve a hard problem, you really should talk to others to see what ideas other people have about solving it. I guarantee this will broaden your horizons. 
+
+Perhaps the title is misleading, I suppose one could learn how to program alone, but a budding programmer will learn so much more if they are actively learning from others. In my opinion, effective teaching of computer science is all about providing that support system.
+
+The biggest challenge to being a software developer...
+The more I think about it, the more I believe that the biggest challenge to software developers these days is dealing with 'the learning gap'. The learning gap refers to the fact that when a programmer is in college they have plenty of time to learn new tools and technologies, but once finished with college and working full time, we don't give ourselves enough time to learn new things. Our field changes so fast that it is impossible for a professional developer, with at least forty hours of 'real' work per week, to experiment with all the new programming languages, frameworks, and techniques out there, let alone master them. I believe this is why programming is mostly a young person's game.
+
+Imagine you are writing code for a big company on a stable, reliable stack. If you work on the project for a few years but don't have the time to learn new things along the way, then when the project wraps up your skills might be out of date. At that point you don't have many options. You could find a similar job (which might seem boring and repetitive but I am guessing many people will do this at least a few times), take some time off to learn the latest and greatest (all the while being unpaid), or you could take that non-technical management job (perhaps getting a raise).
+
+As soon as you take that management job, though, you will only fall more and more behind. I have met people who have taken this path and after just a little while they lack the confidence to ever get back in the game. They seem to have forgotten just how awesome they were when they were slinging code. This premature retirement from solving complex technical problems seems like a waste to me that could be avoided if we all made learning an essential function of our jobs.
+
+I see some obvious solutions to this problem:
+- Make learning a part of the culture. In your company, make teaching to, and learning from others a measured performance goal. 
+- Hire people who are good problem solvers and let them learn what they need to know on the job.
+
+While in college we have a rigid structure where we are expected to learn and practice along the way. Once we leave college most of us never have that structured learning experience again. Yes, motivated people can read books and blogs and keep up. But it is easy for even the most well intentioned developer to slowly fall behind. This is especially true once we start to acquire spouses, children, mortgages, etc.
+
+The best way to ensure that you are keeping up is to learn in groups of your peers during work hours. I really like the idea of company sponsored 20% time, technical book clubs, meetups, fed ex days, and lightning talks because they involve peers pushing each other to stay current. I think an effort should be made for everyone on the team to work on small, less than critical projects that use experimental (or at least new-to-you) technologies. In addition, team members should work with people they don't usually work with on these projects. This is good for the employees and it is good for the companies to have a broad set of experienced people.
+
+The main point that I am trying to make is that our peers and colleagues have to become our teachers, and our companies must support developers' teaching, learning, and experimentation. Teaching and learning should be an in-house activity. Luckily, all of this teaching and learning can easily be quantified and used as a performance measurement. If you are not actively learning from others and not making the people around you better, then you are not fully contributing to the team.
+
+Another option to ease the problems associated with the learning gap is to hire problems solvers and let them figure out the technology stack on the job. This is especially applicable if your organization already has a strong teaching and learning culture. I wonder how many former rockstars turned middle managers at big companies would like the opportunity to get back in the game without the pressure of having to know everything before their first day on the job.
+
+If I was hiring, instead of listing twenty impossibly diverse skills in bullet points this would be my only requirement:
+Looking for an expert problem solver. Candidates should come in ready to learn new things and teach others what you have learned over the years. 
+You don't know <hot new technology>, but you just spent the last several years working on an awesome product? No problem, <hot new technology> isn't that hard. If you were awesome on your last project you will be awesome on our project.  
+Feel free to steal this for your next job posting. I might even apply!
+
+Learning to become a developer is just as hard as it has always been
+There are many different ways to learn how to become a software developer. One can go to college and learn about computer science for four years. Or, one can learn on their own with books or one of the many great and free online course aggregators and interactive tutorial sites. One can even get intense training in a very specific niche in the field. I would guess there are people working on even more distinctive and new ways to deliver the content a programmer needs to know in order to be effective. This is all great for those of us who love to code and want others to love it too.
+
+However, even though there are new content delivery technologies we have to remember that learning to be a software developer has not gotten easier because of them. Acquiring the content is important, of course, but I don't believe it matters much whether you learned the content from a college professor, read it in a book, or learned it in an online course. What matters is how you grow from an inexperienced developer to an experienced one.
+
+Imagine if you were interested in learning how to paint. You could take some courses at a college, watch online videos about painting, and even use some interactive web apps to hone a technique or two. But none of these will make you a great painter. The only way to become a great painter is to do a lot of painting (and even that doesn't guarantee that you will ever be great).
+
+This is as true with painting as it is with developing software. The only way to become a great software developer is to write a lot of software. You will not be very good at first but then you will get better. It will be hard and frustrating. If you put enough effort into it, however, you will grow as a developer. You will not grow simply by acquiring all the content from these new teaching technologies.
+
+Different people have different preferences for acquiring content. Having different avenues for acquiring knowledge is great but lets not make the mistake of thinking that it is any easier to learn how to become a software developer today than it was ten years ago. I believe programming is one of the purest forms of thoughtful design and creativity. It has always been hard and I believe it will always be hard.
