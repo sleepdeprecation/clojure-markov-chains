@@ -1,5 +1,5 @@
 (use '[clojure.set :only (union)])
-(use '[clojure.string :only (join split trim)])
+(use '[clojure.string :only (join split blank?)])
 
 ; Turn [input] into a parsable seq.
 	; adds two empty slots before and after [input] so we can
@@ -61,21 +61,26 @@
 	)
 )
 
+
+; Turn a seq into real words...
+(defn stringiffy [words]
+	(join 
+		" "
+		(filter #(not (blank? %)) words)
+	)
+)
+
+
 ; Generate `length` words based on an input string
 (defn generate [input length]
 	(let [chain (chain-gen input)]
-		(join 
-			" "
-			(filter 
-				(fn [item] (not (empty? item)))
-				(map trim
-					(take 
-						length 
-						(create-seq 
-							chain
-							(split (rand-nth (keys chain)) #" ")
-						)
-					)
+		(stringiffy
+			(take 
+				length 
+				(create-seq 
+					chain 
+					;'(" " " ")
+					(split (rand-nth (keys chain)) #" ")
 				)
 			)
 		)
