@@ -22,12 +22,10 @@
 (defn threegrams [input]
 	(if (< (count input) 3)
 		nil
-		(lazy-seq
-			(cons 
-				{(join " " (take 2 input)) [(nth input 2)]}
-				(threegrams (rest input))
-			)
-		)
+		(lazy-seq (cons 
+			{(join " " (take 2 input)) [(nth input 2)]}
+			(threegrams (rest input))
+		))
 	)
 )
 
@@ -46,8 +44,8 @@
 ; Given a chain and seq of words, generate a potential next word
 (defn next-word [chain words]
 	(let [c (count words)]
-		(let [k (join " " [(nth words (- c 2)) (nth words (- c 1))])]
-			(rand-nth (seq (chain k)))
+		(rand-nth 
+			(chain (join " " (take-last 2 words)) )
 		)
 	)
 )
@@ -84,4 +82,4 @@
 	)
 )
 ;(println (generate (slurp "txt/lovecraft-at-the-mountains-of-madness.txt") 100))
-;(println (generate (slurp "txt/mahoney-multiposts.txt") 100))
+(println (generate (slurp "txt/mahoney-multiposts.txt") 100))
