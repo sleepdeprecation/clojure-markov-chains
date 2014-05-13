@@ -36,8 +36,10 @@
 	; Chains are just a union of all 3-grams produced by 
 	; `threegrams`
 (defn chain-gen [input]
-	;(reduce #(merge-with union) grams)
-	(into {} (threegrams (split-input input)))
+	(reduce 
+		#(merge-with union %1 %2) 
+		(threegrams (split-input input))
+	)
 )
 
 
