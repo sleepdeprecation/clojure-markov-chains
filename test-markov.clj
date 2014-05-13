@@ -16,47 +16,24 @@
 )
 
 
-(deftest threesies-test
-	;(println (threesies (split-input "I am not a number! I am a free man!")))
-	(let [chain (threesies (split-input "I am not a number! I am a free man!"))]
+(deftest threegrams-test
+	;(println (threegrams (split-input "I am not a number!")))
+	(let [grams (threegrams (split-input "I am not a number!"))]
+		;(println (first grams))
 		(is (=
-			["not" "a"]
-			(chain "I am")
+			["I"]
+			((first grams) "   ")
 		))
 
+		;(println (nth grams 2))
 		(is (=
-			["free"]
-			(chain "am a")
-		))
-	)
-)
-
-
-(deftest next-word-test
-	(let [chain (threesies (split-input "I am not a number!"))]
-		(is (=
-			"I"
-			(next-word chain '(" " " "))
-		))
-
-		(is (=
-			"not"
-			(next-word chain '(" " " " "I" "am"))
+			["not"]
+			((nth grams 2) "I am")
 		))
 	)
 )
 
 
-(deftest create-seq-test
-	(let [chain (threesies (split-input "I am not a number!"))]
-		(is (=
-			"I am not a number!"
-			(join 
-				" "
-				(take 5 (create-seq chain '(" " " ")))
-			)
-		))
-	)
-)
+
 
 (run-all-tests #"user")

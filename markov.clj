@@ -13,12 +13,17 @@
 )
 
 
+; Generate pseudo 3-grams.
+	; Creates a lazy-seq of maps (each with only one key
+	; and value).
+	;
+	; These maps look like:
+	;	{ "[word 1] [word 2]": "[word 3]"}
 (defn threegrams [input]
 	(if (< (count input) 3)
 		nil
 		(lazy-seq
 			(cons 
-				;(take 3 input)
 				{(join " " (take 2 input)) [(nth input 2)]}
 				(threegrams (rest input))
 			)
@@ -27,40 +32,16 @@
 )
 
 
-(defn chain-gen [grams]
-	;(if (empty? grams)
-	;	nil
-	;	(let [gram (first grams)]
-	;		(merge-with union
-	;			{(join " " (take 2 gram)) [(nth gram 2)]}
-	;			(chain-gen (rest grams))
-	;		)
-	;	)
-	;)
-
-	(reduce union grams)
+; Given a sequence of 3-grams, create a chain
+	; Chains are just a union of all 3-grams produced by 
+	; `threegrams`
+(defn chain-gen [input]
+	;(reduce #(merge-with union) grams)
+	(into {} (threegrams (split-input input)))
 )
 
 
-; Turn [input] (a seq of words) into the chain (pseudo 3-grams)
-	; Creates a map with keys of all two-word groups in [input],
-	; with the values being a vector of following words.
-	;
-	; The map looks like:
-	; { "[word 1] [word 2]" : ["[word 3, 1]", "[word 3, 2]" ...] }
-(defn threesies [input]
-	;(if (< (count input) 3)
-	;	nil
-	;	(merge-with union 
-	;		{(join " " (take 2 input)) [(nth input 2)]} 
-	;		(threesies (rest input))
-	;	)
-	;)
-
-	(chain-gen (threegrams input))
-)
-
-
+; Given a chain and seq of words, generate a potential next word
 (defn next-word [chain words]
 	(let [c (count words)]
 		(let [k (join " " [(nth words (- c 2)) (nth words (- c 1))])]
@@ -70,15 +51,19 @@
 )
 
 
+; Given a chain and a seq of words, generate more words
 (defn create-seq [chain words]
 	(let [nw (next-word chain words)]
-		(cons nw (lazy-seq (create-seq chain (concat words [nw]))))
+		(cons 
+			nw 
+			(lazy-seq (create-seq chain (concat words [nw])))
+		)
 	)
 )
 
-
+; Generate `length` words based on an input string
 (defn generate [input length]
-	(let [chain (threesies (split-input input))]
+	(let [chain (chain-gen input)]
 		(join 
 			" "
 			(filter 
@@ -88,7 +73,6 @@
 						length 
 						(create-seq 
 							chain
-							;'(" " " ")
 							(split (rand-nth (keys chain)) #" ")
 						)
 					)
@@ -97,5 +81,5 @@
 		)
 	)
 )
-(println (generate (slurp "txt/lovecraft-at-the-mountains-of-madness.txt") 100))
-;(println (generate (slurp "txt/mahoney-killfilesystem.txt") 100))
+;(println (generate (slurp "txt/lovecraft-at-the-mountains-of-madness.txt") 100))
+;(println (generate (slurp "txt/mahoney-multiposts.txt") 100))
